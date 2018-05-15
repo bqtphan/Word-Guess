@@ -1,15 +1,3 @@
-//      WIN COUNT
-var win = 0
-// function winAdd() {
-//     for (winCheck = 0; winCheck < chosenWord.length; winCheck++) {
-//         if (dashWord !== '_ ') {
-//             win++;
-//         }
-//     }
-// }
-// // var win = winadd()
-document.getElementById("win").innerHTML = win;
-
 //      GENERATE WORD
 
 const wordList = ['alohomora', 'expelliarmus', 'sectumsempra', 'lumos', 'obliviate', 'accio', 'aguamenti', 'imperio', 'stupefy', 'protego', 'riddikulus'];
@@ -30,16 +18,13 @@ function makeDash() {
         dashedWord += '_ ';
     }
 
-    //  REVIEW
-    let temp = dashedWord.split(' ');
-    temp.pop();
-    console.log(temp);
-    return temp;
+    let makingDash = dashedWord.split(' ');
+    makingDash.pop();
+    console.log(makingDash);
+    return makingDash;
 }
 var dashedWord = makeDash();
 document.getElementById("word").innerHTML = dashedWord;
-
-
 
 
 //      GUESSED LETTERS & SUBSITUTE LETTERS
@@ -73,7 +58,11 @@ document.onkeyup = function (event) {
 }
 document.getElementById("remainingGuess").innerHTML = remainingGuess;
 
-//console.log(dashedWord);
-// console.log(dashedWordArray);    
-//console.log(splitWord);
-// console.log(guessWord);
+
+//      WIN COUNT
+var win = 0
+if (dashedWord === chosenWord){
+    win++;
+}
+
+document.getElementById("win").innerHTML = win;
