@@ -1,0 +1,69 @@
+* {
+    box-sizing: border-box;
+}
+  
+body{
+    background: url("http://thecutestblogontheblock.com/wp-content/uploads/2011/11/harry-potter-battle-copy.jpg");
+    background-size: 100%;
+    background-color: grey;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+}
+
+header {
+    width: 100%;
+    max-width: 600px;
+    background-color:beige; opacity: .7;
+    margin: 0 auto;
+    clear: both;
+    margin-bottom: 50px;
+    
+}
+
+.container {
+    width: 100%;
+    max-width: 560px;
+    margin: 0 auto;
+    clear: both;
+    background-color: white; opacity: .7;
+    
+}
+
+p:last-child {
+    margin-bottom: 0;
+}
+
+h1 {
+    text-align: center;
+    font-family: 'Amatic SC', cursive;
+  
+    padding: 20px 0 20px 0;
+    font-size: 70px;
+    border-bottom: 3px solid rgba(255, 217, 0, 0.705);
+}
+
+h2 {
+    text-align: center;
+    font-family:  'Amatic SC', cursive;
+    font-weight: bold;
+    padding: 10px 0 10px 0;
+    font-size: 30px;
+    border-bottom: 3px solid rgba(255, 217, 0, 0.705);
+}
+
+p {
+    text-align: center;
+    font-family: 'Amatic SC', cursive;
+    padding: 10px 0 10px 0;
+    font-size: 30px;
+    border-bottom: 3px solid rgba(255, 217, 0, 0.705);
+}
+
+h3 {
+    text-align: center; 
+    font-family: 'Amatic SC', cursive;
+    padding: 10px 0 10px 0;
+    font-size: 50px;
+    border-bottom: 3px solid rgba(255, 217, 0, 0.705);
+}
