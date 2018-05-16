@@ -20,24 +20,23 @@ function makeDash() {
 
     let makingDash = dashedWord.split(' ');
     makingDash.pop();
-    console.log(makingDash);
+    // console.log(makingDash);
     return makingDash;
 }
 var dashedWord = makeDash();
 document.getElementById("word").innerHTML = dashedWord;
 
-
 //      GUESSED LETTERS & SUBSITUTE LETTERS
 
 var guessArray = [];
 var remainingGuess = 8;
-
+var win = 0;
 document.onkeyup = function (event) {
     var guessLetter = event.key.toLowerCase();
 
     guessArray.push(guessLetter);
     document.getElementById("guessed").innerHTML = guessArray;
-    console.log(guessArray);
+    // console.log(guessArray);
 
     if (chosenWord.indexOf(guessLetter) > -1) {
         for (let i = 0; i < chosenWord.length; i++) {
@@ -45,6 +44,23 @@ document.onkeyup = function (event) {
                 dashedWord[i] = guessLetter;
                 console.log(dashedWord);
                 document.getElementById("word").innerHTML = dashedWord;
+
+                if (dashedWord.indexOf('_') === -1) {
+                    alert("Yer a wizard!");
+                    win++;
+
+                        // RESET ATTEMPTS
+                    remainingGuess = 8;
+                    guessArray = [];
+                    randomWord();
+                    let chosenWord = randomWord();
+                    makeDash();
+                    let dashedWord = makeDash();
+                    let i = 0;
+                    document.getElementById("word").innerHTML = dashedWord;
+                    document.getElementById("win").innerHTML = win;
+                    
+                }
             }
         }
     }
@@ -57,12 +73,4 @@ document.onkeyup = function (event) {
     }
 }
 document.getElementById("remainingGuess").innerHTML = remainingGuess;
-
-
-//      WIN COUNT
-var win = 0
-if (dashedWord === chosenWord){
-    win++;
-}
-
 document.getElementById("win").innerHTML = win;
