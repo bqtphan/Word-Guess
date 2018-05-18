@@ -1,6 +1,27 @@
 //      GENERATE WORD
 
 const wordList = ['alohomora', 'expelliarmus', 'sectumsempra', 'lumos', 'obliviate', 'accio', 'aguamenti', 'imperio', 'stupefy', 'protego', 'riddikulus'];
+var chosenWord;
+var dashedWord;
+var printDashedWord;
+var guessArray;
+var remainingGuess;
+var win = 0;
+
+init();
+
+function init() {
+    chosenWord = randomWord();
+    dashedWord = makeDash(chosenWord);
+    console.log(chosenWord);
+    printDashedWord = dashedWord.join('');
+    guessArray = [];
+    remainingGuess = 8;
+    isDone = false;
+    document.getElementById("remainingGuess").innerHTML = remainingGuess;
+    document.getElementById("win").innerHTML = win;
+    document.getElementById("word").innerHTML = printDashedWord;
+}
 
 function randomWord() {
     const randomIndex = Math.floor(Math.random() * 11);
@@ -8,59 +29,29 @@ function randomWord() {
     return chosenWord;
 }
 
-var chosenWord = randomWord();
-console.log(chosenWord);
-
-
-function makeDash() {
-    var dashedWord = '';
-    for (let charCount = 0; charCount < chosenWord.length; charCount++) {
-        dashedWord += '_ ';
+function makeDash(newWord) {
+    let dashWord = '';
+    for (let charCount = 0; charCount < newWord.length; charCount++) {
+        dashWord += '_';
     }
 
-    let makingDash = dashedWord.split(' ');
-    makingDash.pop();
-    // console.log(makingDash);
+    let makingDash = dashWord.split('');
     return makingDash;
 }
-var dashedWord = makeDash();
-document.getElementById("word").innerHTML = dashedWord;
 
 //      GUESSED LETTERS & SUBSITUTE LETTERS
 
-var guessArray = [];
-var remainingGuess = 8;
-var win = 0;
 document.onkeyup = function (event) {
     var guessLetter = event.key.toLowerCase();
 
     guessArray.push(guessLetter);
     document.getElementById("guessed").innerHTML = guessArray;
-    // console.log(guessArray);
 
     if (chosenWord.indexOf(guessLetter) > -1) {
         for (let i = 0; i < chosenWord.length; i++) {
             if (chosenWord.charAt(i) === guessLetter) {
                 dashedWord[i] = guessLetter;
-                console.log(dashedWord);
-                document.getElementById("word").innerHTML = dashedWord;
-
-                if (dashedWord.indexOf('_') === -1) {
-                    alert("Yer a wizard!");
-                    win++;
-
-                        // RESET ATTEMPTS
-                    remainingGuess = 8;
-                    guessArray = [];
-                    randomWord();
-                    let chosenWord = randomWord();
-                    makeDash();
-                    let dashedWord = makeDash();
-                    let i = 0;
-                    document.getElementById("word").innerHTML = dashedWord;
-                    document.getElementById("win").innerHTML = win;
-                    
-                }
+                document.getElementById("word").innerHTML = dashedWord.join("");
             }
         }
     }
@@ -71,6 +62,14 @@ document.onkeyup = function (event) {
         }
         document.getElementById("remainingGuess").innerHTML = remainingGuess;
     }
+    if (dashedWord.join('') === chosenWord) {
+        alert("Yer a wizard!");
+        win++;
+        document.getElementById("win").innerHTML = win;
+        isDone = true;
+    }
+
+    if (isDone) {
+        init();
+    }
 }
-document.getElementById("remainingGuess").innerHTML = remainingGuess;
-document.getElementById("win").innerHTML = win;
